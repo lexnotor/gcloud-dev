@@ -1,0 +1,18 @@
+runtime: nodejs18
+
+# le nom du service, par defaut le nom est default
+service: test-deploy
+
+# nombre d'instance maximum
+automatic_scaling:
+    max_instances: 1
+
+# indique à app engine de diriger tous les paths (URL) vers l'application
+handlers:
+    - url: /.*
+      secure: always
+      redirect_http_response_code: 301
+      script: auto
+
+# commande pour demarrer son application
+entrypoint: "npm run start:prod"
